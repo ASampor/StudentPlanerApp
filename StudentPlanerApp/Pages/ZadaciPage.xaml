@@ -1,0 +1,18 @@
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentPlanerApp.ZadaciPage"
+             Title="Zadaci">
+
+    <StackLayout Padding="10">
+        <Label Text="Lista zadataka" FontSize="Large" />
+        <ListView x:Name="TaskListView" ItemSelected="OnItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Naziv}" Detail="{Binding Opis}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Dodaj novi zadatak" Clicked="OnAddTaskClicked" />
+    </StackLayout>
+</ContentPage>

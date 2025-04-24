@@ -1,8 +1,17 @@
-﻿using System;
+﻿using SQLite;
 
-public class Class1
+namespace StudentPlanerApp.Models
 {
-	public Class1()
+	public Class Zadatak
 	{
+		[PrimaryKey, AutoIncrement]
+		public int Id { get; set; }
+
+		public string Naziv { get; set; }
+	    public string Opis { get; set; }
+	    public DateTime Datum { get; set; }
+
+
+
 	}
 }
