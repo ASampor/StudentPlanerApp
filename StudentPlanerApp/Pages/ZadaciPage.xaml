@@ -1,18 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StudentPlanerApp.ZadaciPage"
+             x:Class="StudentPlanerApp.Pages.ZadaciPage"
              Title="Zadaci">
 
-    <StackLayout Padding="10">
-        <Label Text="Lista zadataka" FontSize="Large" />
-        <ListView x:Name="TaskListView" ItemSelected="OnItemSelected">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Naziv}" Detail="{Binding Opis}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+    <StackLayout Padding="20">
 
-        <Button Text="Dodaj novi zadatak" Clicked="OnAddTaskClicked" />
+        <!-- Naslov zadatka -->
+        <Label Text="Naslov" />
+        <Entry x:Name="unosNaslova" Placeholder="Unesi naslov zadatka" />
+
+        <!-- Opis zadatka -->
+        <Label Text="Opis" />
+        <Entry x:Name="unosOpisa" Placeholder="Unesi opis zadatka" />
+
+        <!-- Datum zadatka -->
+        <Label Text="Datum" />
+        <DatePicker x:Name="datumPicker" />
+
+        <!-- Dugme za dodavanje -->
+        <Button Text="Dodaj zadatak" Clicked="DodajZadatak_Clicked" BackgroundColor="LightGreen" />
+
+        <!-- Lista zadataka -->
+        <CollectionView ItemsSource="{Binding Zadaci}" Margin="0,20,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
+                        <StackLayout>
+                            <Label Text="{Binding Naslov}" FontAttributes="Bold" FontSize="Medium" />
+                            <Label Text="{Binding Opis}" FontSize="Small" />
+                            <Label Text="{Binding Datum, StringFormat='Datum: {0:dd.MM.yyyy}'}" FontSize="Small" />
+
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <CheckBox IsChecked="{Binding Zavrsen}"
+                                          CheckedChanged="OznaciZavrsen_CheckedChanged"
+                                          VerticalOptions="Center" />
+                                <Label Text="Završeno" VerticalOptions="Center" />
+
+                                <Button Text="Obriši"
+                                        Clicked="ObrisiZadatak_Clicked"
+                                        BackgroundColor="Tomato"
+                                        TextColor="White"
+                                        HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
     </StackLayout>
 </ContentPage>

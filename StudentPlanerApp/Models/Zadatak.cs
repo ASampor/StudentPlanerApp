@@ -10,6 +10,7 @@ namespace StudentPlanerApp.Models
 		public string Naziv { get; set; }
 	    public string Opis { get; set; }
 	    public DateTime Datum { get; set; }
+	    public bool Zavrsen { get; set; }
 
 
 
